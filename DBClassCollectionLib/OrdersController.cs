@@ -79,18 +79,21 @@ namespace DBClassCollectionLib
                 orders.Add(ReadFromSQL(reader));
             }
             reader.Close();
+            GetAllCustomer(orders);
             return orders;
         }
 
         public Order GetbyPK(int id)
         {
-            var sql = $"SELECT * on Order Where id = @id; ";
+            var sql = $"SELECT * from Orders Where id = @id; ";
             var cmd = new SqlCommand(sql, connection.SqlConn);
-            var reader = cmd.ExecuteReader();
             cmd.Parameters.AddWithValue("@id", id);
+            var reader = cmd.ExecuteReader();
+ 
             reader.Read();
             var order = ReadFromSQL(reader);
             reader.Close();
+            GetCustomer(order);
             return (order);
         }
 

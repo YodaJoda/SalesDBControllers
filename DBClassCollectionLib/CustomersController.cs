@@ -46,11 +46,11 @@ namespace DBClassCollectionLib
             cmd.Parameters.AddWithValue("@id", Id);
             var reader = cmd.ExecuteReader();
             
-            if (!reader.HasRows)
-            {
-                reader.Close();
-                return null;
-            }           
+            //if (!reader.HasRows)
+            //{
+            //    reader.Close();
+            //    return null;
+            //}           
             reader.Read();
             var customer = FillVendorFromReader(reader);
             reader.Close();

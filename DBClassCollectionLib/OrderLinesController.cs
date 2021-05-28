@@ -72,7 +72,7 @@ namespace DBClassCollectionLib
 
         public List<OrderLine> GetAll()
         {
-            var sql = $"SELECT * on OrderLines; ";
+            var sql = $"SELECT * from OrderLines; ";
             var cmd = new SqlCommand(sql, connection.SqlConn);
             var reader = cmd.ExecuteReader();
             var orderLines = new List<OrderLine>();
