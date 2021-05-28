@@ -81,6 +81,9 @@ namespace DBClassCollectionLib
                 orderLines.Add(ReadFromSQL(reader));
             }
             reader.Close();
+
+            GetOrderForAll(orderLines);
+
             return orderLines;
         }
 
@@ -93,6 +96,7 @@ namespace DBClassCollectionLib
             reader.Read();
             var orderLine = ReadFromSQL(reader);
             reader.Close();
+            GetOrder(orderLine);
             return (orderLine);
         }
 
@@ -100,10 +104,8 @@ namespace DBClassCollectionLib
         {
             var ordersController = new OrdersController(connection);
             orderLine.order = (ordersController.GetbyPK(orderLine.OrdersId));
-
-
         }
-        private void GetOrderForAll (List<OrderLine> orderLines)
+        public void GetOrderForAll (List<OrderLine> orderLines)
         {
             foreach (var i in orderLines)
             {
