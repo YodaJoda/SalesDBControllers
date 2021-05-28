@@ -26,10 +26,10 @@ namespace DBClassCollectionLib
 
         public bool Create(OrderLine orderLine)
         {
-            var sql = "INSERT into OrderLines; " +
-                "(OrdersId, Product, Description, Quantity, Price ) " +
-                "VALUES " +
-                $"(@OrdersId, @Product, @Description, @Quantity, @Price);";
+            var sql = $"INSERT into OrderLines; " +
+                $"(OrdersId, Product, Description, Quantity, Price ) " +
+                $"VALUES " +
+                $"(@OrdersId, @Product, @Description, @Quantity, @Price); ";
             var cmd = new SqlCommand(sql, connection.SqlConn);
             return AddParameters(cmd, orderLine);
         }
