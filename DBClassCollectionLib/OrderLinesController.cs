@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DBClassCollectionLib
 {
-    class OrderLinesController
+    public class OrderLinesController
     {
         public static Connection connection { get; set; }
 
@@ -94,6 +94,14 @@ namespace DBClassCollectionLib
             var orderLine = ReadFromSQL(reader);
             reader.Close();
             return (orderLine);
+        }
+
+        public Order GetOrder(int orderId)
+        {
+            var order = new OrdersController();
+            order.GetByPk(orderId);
+
+
         }
 
 
