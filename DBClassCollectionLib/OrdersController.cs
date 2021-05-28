@@ -94,5 +94,19 @@ namespace DBClassCollectionLib
             return (order);
         }
 
+        public void GetCustomer(Order order)
+        {
+            var customerController = new CustomersController(connection);
+            order.customer = customerController.GetByPK(order.CustomerId);
+
+        }
+        public void GetAllCustomer(List<Order> orders)
+        {
+            foreach(var i in orders)
+            {
+                GetCustomer(i);
+            }
+        }
+
     }
 }
