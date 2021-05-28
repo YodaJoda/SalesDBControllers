@@ -96,13 +96,21 @@ namespace DBClassCollectionLib
             return (orderLine);
         }
 
-        public Order GetOrder(int orderId)
+        public void GetOrder(OrderLine orderLine)
         {
-            var order = new OrdersController();
-            order.GetByPk(orderId);
+            var ordersController = new OrdersController(connection);
+            orderLine.order = (ordersController.GetbyPK(orderLine.OrdersId));
 
 
         }
+        private void GetOrderForAll (List<OrderLine> orderLines)
+        {
+            foreach (var i in orderLines)
+            {
+                GetOrder(i);
+            }
+        }
+
 
 
 
