@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DBClassCollectionLib
 {
-    class OrderLinesController
+    public class OrderLinesController
     {
         public static Connection connection { get; set; }
 
@@ -81,6 +81,9 @@ namespace DBClassCollectionLib
                 orderLines.Add(ReadFromSQL(reader));
             }
             reader.Close();
+
+            GetOrderForAll(orderLines);
+
             return orderLines;
         }
 
@@ -93,8 +96,23 @@ namespace DBClassCollectionLib
             reader.Read();
             var orderLine = ReadFromSQL(reader);
             reader.Close();
+            GetOrder(orderLine);
             return (orderLine);
         }
+
+        public void GetOrder(OrderLine orderLine)
+        {
+            var ordersController = new OrdersController(connection);
+            orderLine.order = (ordersController.GetbyPK(orderLine.OrdersId));
+        }
+        public void GetOrderForAll (List<OrderLine> orderLines)
+        {
+            foreach (var i in orderLines)
+            {
+                GetOrder(i);
+            }
+        }
+
 
 
 

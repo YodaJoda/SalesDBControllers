@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DBClassCollectionLib
 {
-    class OrdersController
+    public class OrdersController
     {
         public static Connection connection { get; set; }
 
